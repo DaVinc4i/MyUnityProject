@@ -5,27 +5,25 @@ using Random = UnityEngine.Random;
 
 namespace Maze
 {
-    public sealed class BadBonus : Bonus, IFlay, IFlicker
+    public sealed class BadBonus : Bonus
     {        
         public event Action<string, Color> OnCaughtPlayerChange = delegate (string str, Color color) { };
 
         private Material _material;
 
         private void Awake()
-        {                        
+        {         
             _heightfly = Random.Range(1.0f, 5.0f);
             _material = GetComponent<Renderer>().material;
-
         }
               
 
         protected override void Interaction()
         {
             OnCaughtPlayerChange.Invoke(gameObject.name, _color);
-            //Add point
         }
 
-        public override void Execute() 
+        public override void Update() 
         {
             if (!IsInteractable) { return; }
             Flay();

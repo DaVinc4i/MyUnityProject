@@ -24,19 +24,7 @@ namespace Maze
 
                 return _player;
             }
-        }
-
-        public Camera MainCamera
-        {
-            get
-            {
-                if (_mainCamera == null)
-                {
-                    _mainCamera = Camera.main;
-                }
-                return _mainCamera;
-            }
-        }
+        }       
 
         public Button RestartGame
         {
@@ -69,7 +57,7 @@ namespace Maze
             { 
                 if (_bonuse == null)
                 {
-                    var gameObject = Resources.Load<GameObject>("Bonuses");
+                    var gameObject = Resources.Load<GameObject>("Bonuse");
                     _bonuse = Object.Instantiate(gameObject, Canvas.transform);
                 }
                 return _bonuse;
@@ -87,7 +75,19 @@ namespace Maze
                 }
                 return _endGame;
             }
-        }   
+        }
+
+        public Camera MainCamera
+        {
+            get
+            {
+                if (_mainCamera == null)
+                {
+                    _mainCamera = Camera.main;
+                }
+                return _mainCamera;
+            }
+        }
     }
 
 }

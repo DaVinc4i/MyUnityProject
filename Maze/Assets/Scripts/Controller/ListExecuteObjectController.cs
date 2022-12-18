@@ -33,7 +33,7 @@ namespace Maze
             _interactiveObject[Length - 1] = execute;
         }
 
-        public IExecute this[int index] { get => _interactiveObject[index]; private set => _interactiveObject[index] = value; }
+        public IExecute this[int index] { get => _interactiveObject[index]; set => _interactiveObject[index] = value; }
 
         public int Length  => _interactiveObject.Length;     
 

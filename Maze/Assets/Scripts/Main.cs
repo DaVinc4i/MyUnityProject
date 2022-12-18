@@ -7,7 +7,7 @@ namespace Maze
 {
     public sealed class Main : MonoBehaviour, IDisposable
     {        
-        private ListExecuteObjectController _executeObject;
+        private ListExecuteObjectController _interactiveObject;
         private DisplayBonuses _displayBonuses;
         private DisplayEndGame _displayEndGame;
         private int _countBonuses;
@@ -19,7 +19,7 @@ namespace Maze
 
         private void Awake()
         {            
-            _executeObject = new ListExecuteObjectController();
+            _interactiveObject = new ListExecuteObjectController();
 
             _reference = new Reference();
 
@@ -31,21 +31,22 @@ namespace Maze
             }
 
             _cameraController = new CameraController(player.transform, _reference.MainCamera.transform);
-            _executeObject.AddExecuteObject(_cameraController);
+            _interactiveObject.AddExecuteObject(_cameraController);
 
             if (Application.platform == RuntimePlatform.WindowsEditor)
             {
                 _inputController = new InputController(player);
-                _executeObject.AddExecuteObject(_inputController);
+                _interactiveObject.AddExecuteObject(_inputController);
             }
 
-            _displayBonuses = new DisplayBonuses(_reference.Bonuse);
             _displayEndGame = new DisplayEndGame(_reference.EndGame);
+            _displayBonuses = new DisplayBonuses(_reference.Bonuse);
+            
 
             _reference.RestartGame.onClick.AddListener(RestartGame);
             _reference.RestartGame.gameObject.SetActive(false);
 
-            foreach (var o in _executeObject)
+            foreach (var o in _interactiveObject)
             {
                 if (o is BadBonus badBonus)
                 {
@@ -80,18 +81,18 @@ namespace Maze
 
         private void Update()
         {
-            for (int i = 0; i < _executeObject.Length; i++)
+            for (int i = 0; i < _interactiveObject.Length; i++)
             {
-               var executeObject = _executeObject[i];
+               var executeObject = _interactiveObject[i];
                if (executeObject == null) { continue; }
 
-                executeObject.Execute();
+                executeObject.Update();
             }
         }
 
         public void Dispose ()
         {
-            foreach (var o in _executeObject)
+            foreach (var o in _interactiveObject)
             {
                 if (o is BadBonus badBonus)
                 {

@@ -6,14 +6,10 @@ namespace Maze
     {
         private Rigidbody _rigibody;
 
-        private void Start()
-        {
-            _rigibody= GetComponent<Rigidbody>();
-        }
+        private void Start() => _rigibody = GetComponent<Rigidbody>();
         public override void Move(float x, float y, float z)
         {
-            _rigibody.AddForce(new Vector3(x, y, z)*_speed);
-           
+            _rigibody.AddForce(new Vector3(x, y, z)*Speed);           
         }
     }
 

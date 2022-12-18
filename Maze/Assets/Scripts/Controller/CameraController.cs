@@ -1,4 +1,6 @@
-using UnityEngine;  
+using UnityEngine;
+using System;
+using TMPro;
 
 namespace Maze
 {
@@ -16,7 +18,7 @@ namespace Maze
             _offset = _mainCamera.position - _player.position;
         }
 
-        public void Execute()
+        public void Update()
         {
             _mainCamera.position = _player.position + _offset;
         }

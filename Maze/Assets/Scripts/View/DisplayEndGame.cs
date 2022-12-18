@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 
+
 namespace Maze
 {
     public sealed class DisplayEndGame
@@ -10,7 +11,7 @@ namespace Maze
 
         public DisplayEndGame(GameObject endGame)
         {
-            _finishGameLabel = endGame.GetComponentInChildren<Text>();
+            _finishGameLabel = endGame.GetComponent<Text>();
             _finishGameLabel.text = String.Empty;
         }
 

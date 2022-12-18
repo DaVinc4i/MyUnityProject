@@ -5,27 +5,28 @@ using Random = UnityEngine.Random;
 
 namespace Maze
 {
-    public sealed class GoodBonus : Bonus, IFlay, IRotation
+    public sealed class GoodBonus : Bonus
     {
-        public int Point;
+        private int _point;
         public event Action<int> OnPointChange = delegate (int i) { };
         
         public float _speedRotation;
 
 
         private void Awake()
-        {              
+        {            
             _heightfly = Random.Range(1.0f, 5.0f);
             _speedRotation = Random.Range(10.0f, 50.0f);
+            _point = 1;
 
         }               
         
         protected override void Interaction()
         {
-            OnPointChange.Invoke(Point);
+            OnPointChange.Invoke(_point);
         }
 
-        public override void Execute()
+        public override void Update()
         {
             if(!IsInteractable) { return; }
             Flay();
